@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TikTok – Log In (Simulasi Edukasi)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ══ Education Banner ══ -->
+  <div class="edu-banner" id="eduBanner">
+    <div class="banner-left">
+      <span class="banner-icon">⚠️</span>
+      <div class="banner-text">
+        <strong>Simulasi Edukasi Keamanan Cyber</strong>
+        <span>Halaman ini adalah simulasi phishing. Perhatikan URL sebelum memasukkan data sensitif.</span>
+      </div>
+    </div>
+    <div class="banner-right">
+      <span class="banner-tag">SIMULASI</span>
+      <button class="banner-close" onclick="closeBanner()" title="Tutup">✕</button>
+    </div>
+  </div>
+
+  <!-- ══ Noise texture overlay ══ -->
+  <div class="noise"></div>
+
+  <!-- ══ Background effects ══ -->
+  <div class="blob blob-red"></div>
+  <div class="blob blob-cyan"></div>
+  <div class="blob blob-mid"></div>
+  <div class="scanlines"></div>
+
+  <!-- ══ Main Layout ══ -->
+  <main class="layout">
+
+    <!-- Left branding -->
+    <div class="branding">
+      <div class="tk-wordmark">
+        <!-- TikTok logo SVG (iconic note shape) -->
+        <svg class="tk-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M34.2 4C34.7 8.4 37.2 11.5 41.5 12.2v5.6c-2.8-.3-5.3-1.2-7.4-2.8v12.7c0 6.4-4.3 12.3-10.6 13.9C16.1 43.3 9.3 39 7.4 32.2c-2-6.8 1.8-14 8.6-16.4 1-.4 2-.6 3-.7V21c-3.9.8-6.4 4.5-5.5 8.4.8 3.8 4.7 6.2 8.5 5.2 3.5-.9 5.9-4.1 5.9-7.8V4h6.3z" fill="white"/>
+          <!-- Cyan ghost (chromatic aberration) -->
+          <path d="M34.2 4C34.7 8.4 37.2 11.5 41.5 12.2v5.6c-2.8-.3-5.3-1.2-7.4-2.8v12.7c0 6.4-4.3 12.3-10.6 13.9C16.1 43.3 9.3 39 7.4 32.2c-2-6.8 1.8-14 8.6-16.4 1-.4 2-.6 3-.7V21c-3.9.8-6.4 4.5-5.5 8.4.8 3.8 4.7 6.2 8.5 5.2 3.5-.9 5.9-4.1 5.9-7.8V4h6.3z" fill="#20d9d2" opacity="0.5" transform="translate(-2, 1.5)"/>
+          <!-- Red ghost -->
+          <path d="M34.2 4C34.7 8.4 37.2 11.5 41.5 12.2v5.6c-2.8-.3-5.3-1.2-7.4-2.8v12.7c0 6.4-4.3 12.3-10.6 13.9C16.1 43.3 9.3 39 7.4 32.2c-2-6.8 1.8-14 8.6-16.4 1-.4 2-.6 3-.7V21c-3.9.8-6.4 4.5-5.5 8.4.8 3.8 4.7 6.2 8.5 5.2 3.5-.9 5.9-4.1 5.9-7.8V4h6.3z" fill="#fe2c55" opacity="0.5" transform="translate(2, -1.5)"/>
+        </svg>
+        <span>TikTok</span>
+      </div>
+      <p class="branding-tagline">Buat, bagikan, dan temukan<br/>video yang menghibur dunia.</p>
+      <div class="branding-stats">
+        <div class="stat"><span class="stat-num">1B+</span><span class="stat-label">Pengguna Aktif</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">150+</span><span class="stat-label">Negara</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Konten</span></div>
+      </div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="card">
+      <h1 class="card-title">Masuk ke TikTok</h1>
+      <p class="card-subtitle">Manage your account, check notifications, comment on videos, and more.</p>
+
+      <!-- Social login options -->
+      <div class="social-options">
+        <button class="btn-social" onclick="showModal(event)">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          <span>Lanjutkan dengan Google</span>
+          <div class="arrow">›</div>
+        </button>
+
+        <button class="btn-social" onclick="showModal(event)">
+          <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <span>Lanjutkan dengan Apple</span>
+          <div class="arrow">›</div>
+        </button>
+
+        <button class="btn-social" onclick="showModal(event)">
+          <svg viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.931-1.956 1.887v2.263h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+          </svg>
+          <span>Lanjutkan dengan Facebook</span>
+          <div class="arrow">›</div>
+        </button>
+      </div>
+
+      <div class="divider"><span>atau</span></div>
+
+      <!-- Email/phone login -->
+      <div class="form-group">
+        <div class="input-icon-wrap">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <input type="text" id="email" placeholder="Email atau nomor telepon" autocomplete="off"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-icon-wrap">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <input type="password" id="password" placeholder="Kata sandi" autocomplete="off"/>
+          <button class="toggle-pw" onclick="togglePw()" type="button">
+            <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="forgot">
+        <a href="#" onclick="showModal(event)">Lupa kata sandi?</a>
+      </div>
+
+      <button class="btn-login" onclick="showModal(event)">
+        <span>Masuk</span>
+      </button>
+
+      <div class="card-footer">
+        Belum punya akun? <a href="#" onclick="showModal(event)">Daftar</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ══ Education Modal ══ -->
+  <div class="sim-overlay" id="simOverlay" onclick="closeOnBg(event)">
+    <div class="sim-modal" role="dialog" aria-modal="true">
+      <div class="sim-icon">🎓</div>
+      <h2>Ini Adalah Simulasi Phishing!</h2>
+      <p>Jika ini bukan simulasi, <strong>akun TikTok Anda baru saja berhasil dicuri.</strong> Pelaku membuat tampilan identik untuk mengelabui korban.</p>
+      <ul class="tips">
+        <li>URL TikTok asli hanya <strong>tiktok.com</strong> — bukan variasi lain</li>
+        <li>Cek ikon gembok 🔒 HTTPS di address bar browser Anda</li>
+        <li>Jangan login via link dari DM, SMS, atau story yang tidak jelas</li>
+        <li>Aktifkan verifikasi 2 langkah di Pengaturan → Keamanan</li>
+        <li>Lapor akun mencurigakan ke TikTok melalui tombol "Laporkan"</li>
+      </ul>
+      <p class="disclaimer">Halaman ini dibuat <strong>hanya untuk edukasi keamanan siber.</strong> Tidak ada data yang dikirim atau disimpan.</p>
+      <button class="btn-close" onclick="closeModal()">Saya Mengerti ✓</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
